@@ -1,10 +1,9 @@
 # assign-stream
 
-[![Build Status](https://travis-ci.org/shinnn/assign-stream.svg?branch=master)](https://travis-ci.org/shinnn/assign-stream)
+[![npm version](https://img.shields.io/npm/v/array-find-predecessor.svg)](https://www.npmjs.com/package/array-find-predecessor)
+[![Build Status](https://travis-ci.com/shinnn/assign-stream.svg?branch=master)](https://travis-ci.com/shinnn/assign-stream)
 [![Build status](https://ci.appveyor.com/api/projects/status/cvrigoevalmbny44?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/assign-stream)
-[![Coverage Status](https://img.shields.io/coveralls/shinnn/assign-stream.svg)](https://coveralls.io/r/shinnn/assign-stream)
-[![Dependency Status](https://david-dm.org/shinnn/assign-stream.svg)](https://david-dm.org/shinnn/assign-stream)
-[![devDependency Status](https://david-dm.org/shinnn/assign-stream/dev-status.svg)](https://david-dm.org/shinnn/assign-stream#info=devDependencies)
+[![Coverage Status](https://img.shields.io/coveralls/shinnn/assign-stream.svg)](https://coveralls.io/github/shinnn/assign-stream)
 
 Streaming [`Object.assign()`](http://www.2ality.com/2014/01/object-assign.html)
 
@@ -26,9 +25,7 @@ assignStream.end();
 
 ## Installation
 
-[![NPM version](https://badge.fury.io/js/assign-stream.svg)](https://www.npmjs.com/package/assign-stream)
-
-[Use npm.](https://docs.npmjs.com/cli/install)
+[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/about-npm/).
 
 ```
 npm install assign-stream
@@ -37,39 +34,39 @@ npm install assign-stream
 ## API
 
 ```javascript
-var assign = require('assign-stream');
+const assignStream = require('assign-stream');
 ```
 
-### assign([*target*,] [*callback*])
+### assignStream([*target*,] [*callback*])
 
-*target*: any value without `null` (`{}` by default)  
+*target*: any value except for `null` (`{}` by default)  
 *callback*: `Function`  
-Return: `Object` ([stream.Writable](http://nodejs.org/api/stream.html#stream_class_stream_writable_1))
+Return: [`stream.Writable`](https://nodejs.org/api/stream.html#stream_class_stream_writable)
 
-It returns a writable stream that assigns enumerable own properties of chunk objects to the target object using [`Object.assign()`](https://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.assign).
+It returns a writable stream that assigns enumerable own properties of chunk objects to the target object using [`Object.assign()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign).
 
 ```javascript
-var assign = require('assign-stream');
-var array = require('stream-array'); // npm install stream-array
+const assignStream = require('assign-stream');
+const array = require('stream-array'); // npm install stream-array
 
-var target = {baz: 2};
+const target = {baz: 2};
 
-array([{foo: 0, bar: 1}, {qux: 3}]);
-.on('end', function() {
+assignStream([{foo: 0, bar: 1}, {qux: 3}]);
+.on('end', () => {
   target; //=> {foo: 0, bar: 1, baz: 2, qux: 3}
 });
 
-arrayStream.pipe(assign());
+arrayStream.pipe(assignStream());
 ```
 
 Target object is optional.
 
 ```javascript
-var assign = require('assign-stream');
+const assign = require('assign-stream');
 
 // this._target is an internal property to keep target object
 assign
-.on('finish', function() {
+.on('finish', () => {
   this._target; //=> {}
 })
 .end();
@@ -80,19 +77,19 @@ assign
 You can specify a function to be called on `finish` event. it will be called with the target object.
 
 ```javascript
-var assign = require('assign-stream');
+const assignStream = require('assign-stream');
 
-assign(function(target) {
+assignStream(target => {
   target; //=> [0, 1, 2]
 }).end([0, 1, 2]);
 
-assign([0, 1, 2], function(target) {
+assignStream([0, 1, 2], target => {
   target; //=> [0, 1, 2]
 }).end();
 ```
 
 ## License
 
-Copyright (c) 2014 [Shinnosuke Watanabe](https://github.com/shinnn)
+Copyright (c) 2014 - 2018 [Shinnosuke Watanabe](https://github.com/shinnn)
 
 Licensed under [the MIT License](./LICENSE).
