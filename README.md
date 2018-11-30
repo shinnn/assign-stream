@@ -2,7 +2,6 @@
 
 [![npm version](https://img.shields.io/npm/v/array-find-predecessor.svg)](https://www.npmjs.com/package/array-find-predecessor)
 [![Build Status](https://travis-ci.com/shinnn/assign-stream.svg?branch=master)](https://travis-ci.com/shinnn/assign-stream)
-[![Build status](https://ci.appveyor.com/api/projects/status/cvrigoevalmbny44?svg=true)](https://ci.appveyor.com/project/ShinnosukeWatanabe/assign-stream)
 [![Coverage Status](https://img.shields.io/coveralls/shinnn/assign-stream.svg)](https://coveralls.io/github/shinnn/assign-stream)
 
 Streaming [`Object.assign()`](http://www.2ality.com/2014/01/object-assign.html)
